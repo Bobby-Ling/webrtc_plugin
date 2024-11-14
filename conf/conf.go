@@ -3,9 +3,10 @@ package conf
 import (
 	"encoding/json"
 	"fmt"
-	"sessionmgr/dbg"
-	"github.com/pion/webrtc/v4"
 	"os"
+	"sessionmgr/dbg"
+
+	"github.com/pion/webrtc/v4"
 )
 
 type Configuration struct {
@@ -29,4 +30,15 @@ func LoadConfig(ConfPath string) (*Configuration, error) {
 	}
 
 	return config, nil
+}
+
+func LoadConfigJson(ConfJson string) (*Configuration, error) {
+    config := &Configuration{}
+    err := json.Unmarshal([]byte(ConfJson), config)
+    if err != nil {
+        fmt.Println(dbg.CONFIG, err)
+        return nil, err
+    }
+
+    return config, nil
 }

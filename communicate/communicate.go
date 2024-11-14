@@ -19,6 +19,16 @@ func NewCommunicate(ConfPath string) (*Communicate, error) {
 	}, nil
 }
 
+func NewCommunicateJson(ConfJson string) (*Communicate, error) {
+	sessionMgr, err := sessionmgr.NewSessionManagerImplJson(ConfJson)
+	if err != nil {
+		return nil, err
+	}
+	return &Communicate{
+		sessionMgr: sessionMgr,
+	}, nil
+}
+
 func (c *Communicate) CreateSession(SessionID int32) *return_pb.Return {
 	err := c.sessionMgr.CreateSession(SessionID)
 	var returnValue return_pb.Return

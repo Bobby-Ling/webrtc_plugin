@@ -1,6 +1,6 @@
 module sessionmgr
 
-go 1.23.2
+go 1.23.0
 
 require (
 	github.com/golang/protobuf v1.5.3

@@ -1,7 +1,7 @@
 package sessionmgr
 
 import (
-	"github.com/pion/webrtc/v4"
+	"os"
 	"sessionmgr/conf"
 	"sessionmgr/dbg"
 	pb "sessionmgr/proto/pkg/ready_pb"
@@ -9,6 +9,8 @@ import (
 	"sync"
 	"sync/atomic"
 	"time"
+
+	"github.com/pion/webrtc/v4"
 )
 
 type SessionManagerImpl struct {
@@ -20,7 +22,16 @@ type SessionManagerImpl struct {
 }
 
 func NewSessionManagerImpl(ConfPath string) (*SessionManagerImpl, error) {
-	config, err := conf.LoadConfig(ConfPath)
+	data, err := os.ReadFile("conf.json")
+	if err != nil {
+		dbg.Println(dbg.CONFIG, err)
+		return nil, err
+	}
+	return NewSessionManagerImpl(string(data));
+}
+
+func NewSessionManagerImplJson(ConfJson string) (*SessionManagerImpl, error) {
+	config, err := conf.LoadConfigJson(ConfJson)
 	if err != nil {
 		return nil, err
 	}

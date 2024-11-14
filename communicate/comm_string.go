@@ -18,6 +18,16 @@ func NewCommString(ConfPath string) *CommString {
 	}
 }
 
+func NewCommStringJson(ConfJson string) *CommString {
+	communicate, err := NewCommunicateJson(ConfJson)
+	if err != nil {
+		return &CommString{}
+	}
+	return &CommString{
+		communicate: communicate,
+	}
+}
+
 func (c *CommString) CreateSession(SessionID int32) string {
 	returnValue := c.communicate.CreateSession(SessionID)
 	jsonBytes, err := json.Marshal(returnValue)
