@@ -10,9 +10,9 @@ import (
 )
 
 type Configuration struct {
-	WebrtcConf       webrtc.Configuration `json:"WebRTC"`
-	CacheSize        int                  `json:"CacheSize"`
-	SessionLifeCycle int                  `json:"SessionLifeCycle"`
+	WebrtcConf       webrtc.Configuration `json:"webrtc"`
+	CacheSize        int                  `json:"cache"`
+	SessionLifeCycle int                  `json:"lifecycle"`
 }
 
 func LoadConfig(ConfPath string) (*Configuration, error) {

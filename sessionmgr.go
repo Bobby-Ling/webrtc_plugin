@@ -27,7 +27,7 @@ func NewSessionManagerImpl(ConfPath string) (*SessionManagerImpl, error) {
 		dbg.Println(dbg.CONFIG, err)
 		return nil, err
 	}
-	return NewSessionManagerImpl(string(data));
+	return NewSessionManagerImplJson(string(data));
 }
 
 func NewSessionManagerImplJson(ConfJson string) (*SessionManagerImpl, error) {

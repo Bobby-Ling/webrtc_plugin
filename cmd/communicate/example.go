@@ -180,6 +180,7 @@ func PressAnyKey() {
 }
 
 func Return(RetStr string) *return_pb.Return {
+	println(RetStr)
 	Ret := return_pb.Return{}
 	err := json.Unmarshal([]byte(RetStr), &Ret)
 	if err != nil {
